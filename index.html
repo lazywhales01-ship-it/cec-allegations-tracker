@@ -121,8 +121,9 @@ html,body{background:#f6f5f9}
 #rolls .chart .lbl{fill:var(--fg);font-family:var(--body);font-size:12px}
 #rolls .chart .bar{fill:var(--bar)}
 #rolls .chart .bar.hi{fill:var(--bar-hi)}
-#rolls .chart .dot{fill:var(--bar);stroke:var(--surface);stroke-width:2}
-#rolls .chart .dot.hi{fill:var(--bar-hi)}
+#rolls .chart .dot{stroke:var(--surface);stroke-width:1.5}
+#rolls .chart .dot.mah{fill:var(--mah)}
+#rolls .chart .dot.mva{fill:var(--mva)}
 #rolls .chart .row:hover .dot, #rolls .chart .row:focus .dot{stroke:var(--fg)}
 #rolls .chart .row:hover .bar, #rolls .chart .row:focus .bar{opacity:.75}
 #rolls .chart .grid{stroke:var(--rule)}
@@ -385,7 +386,7 @@ html,body{background:#f6f5f9}
 
 <section aria-labelledby="c">
   <h2 id="c">Change in registered electors, by Lok Sabha seat</h2>
-  <p class="small">Each Lok Sabha seat contains six assembly seats. Assembly electors were summed into their Lok Sabha seat so that both sides of the comparison use official data. Each dot is one Lok Sabha seat: how much its electorate grew, against how many of its six assembly seats Mahayuti won. Dashed lines mark the state average (+4.39%) and +10%. Hover or tap a dot for counts.</p>
+  <p class="small">Each Lok Sabha seat contains six assembly seats. Assembly electors were summed into their Lok Sabha seat so that both sides of the comparison use official data. Each Lok Sabha seat appears twice at the same growth value: a circle for the assembly seats Mahayuti won and a diamond for those MVA won (the two need not add to 6, as others won 12 seats). Dashed lines mark the state average (+4.39%) and +10%. Hover or tap a dot for counts.</p>
   <div class="chart" id="chart"></div>
 </section>
 
@@ -494,32 +495,35 @@ const PCS=[{"pc":"Kalyan","ls":2082221,"vs":2295909,"d":213688,"p":10.26,"m":5,"
   var BLOC={BJP:'m',SHS:'m',NCP:'m','INC':'v','SS(UBT)':'v','NCP(SP)':'v'};
   var sorted=PCS.slice().sort(function(a,b){return b.p-a.p});
   // chart
-  // scatter: x = elector growth %, y = assembly seats won by Mahayuti (of 6)
-  var W=720,H=330,L=56,R=20,T=50,B=44,x0=1,x1=11;
+  // scatter: x = elector growth %, y = assembly seats won (of 6); two series: Mahayuti (circle) and MVA (diamond)
+  var W=720,H=340,L=56,R=20,T=58,B=44,x0=1,x1=11;
   var x=function(v){return L+(W-L-R)*(v-x0)/(x1-x0)};
   var rowGap=(H-T-B)/6.6, y=function(v){return H-B-rowGap*(v+0.3)};
-  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Scatterplot of elector growth against Mahayuti seats won, for 48 Lok Sabha seats">';
+  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Scatterplot of elector growth against seats won by Mahayuti and by MVA, for 48 Lok Sabha seats">';
   for(var k=0;k<=6;k++){s+='<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(k)+'" y2="'+y(k)+'"/><text x="'+(L-10)+'" y="'+(y(k)+4)+'" text-anchor="end">'+k+'</text>'}
   for(var t=2;t<=10;t+=2){s+='<text x="'+x(t)+'" y="'+(H-B+18)+'" text-anchor="middle">+'+t+'%</text>'}
   s+='<text x="'+((L+W-R)/2)+'" y="'+(H-6)+'" text-anchor="middle">Change in registered electors, May → Nov 2024</text>';
-  s+='<text x="14" y="'+((T+H-B)/2)+'" text-anchor="middle" transform="rotate(-90 14 '+((T+H-B)/2)+')">Mahayuti seats won (of 6)</text>';
-  [[4.39,'State avg'],[10,'+10%']].forEach(function(l){s+='<line class="refl" x1="'+x(l[0])+'" x2="'+x(l[0])+'" y1="18" y2="'+(H-B)+'"/><text x="'+(x(l[0])+4)+'" y="14">'+l[1]+'</text>'});
-  // beeswarm offsets within each row so dots don't hide each other
+  s+='<text x="14" y="'+((T+H-B)/2)+'" text-anchor="middle" transform="rotate(-90 14 '+((T+H-B)/2)+')">Assembly seats won (of 6)</text>';
+  [[4.39,'State avg'],[10,'+10%']].forEach(function(l){s+='<line class="refl" x1="'+x(l[0])+'" x2="'+x(l[0])+'" y1="32" y2="'+(H-B)+'"/><text x="'+(x(l[0])+4)+'" y="40">'+l[1]+'</text>'});
+  function mark(cls,cx,cy,r){return cls==='mva'?'<rect class="dot mva" x="'+(cx-r*0.85)+'" y="'+(cy-r*0.85)+'" width="'+(r*1.7)+'" height="'+(r*1.7)+'" transform="rotate(45 '+cx+' '+cy+')"/>':'<circle class="dot mah" cx="'+cx+'" cy="'+cy+'" r="'+r+'"/>'}
+  // legend
+  s+=mark('mah',L+6,14,5.5)+'<text class="lbl" x="'+(L+16)+'" y="18">Mahayuti seats won</text>'+mark('mva',L+170,14,5.5)+'<text class="lbl" x="'+(L+180)+'" y="18">MVA seats won</text>';
+  // beeswarm offsets within each row so marks don't hide each other
   var placed={},pos=[];
-  PCS.slice().sort(function(a,b){return a.p-b.p}).forEach(function(r){
-    var px=x(r.p),row=placed[r.m]||(placed[r.m]=[]),offs=[0,-8,8,-15,15,-21,21],py=y(r.m);
-    for(var o=0;o<offs.length;o++){var cy=y(r.m)+offs[o];if(row.every(function(q){return Math.hypot(q[0]-px,q[1]-cy)>=11})){py=cy;break}}
-    row.push([px,py]);pos.push({r:r,x:px,y:py});
+  var pts=[];PCS.forEach(function(r){pts.push({r:r,k:r.m,c:'mah'});pts.push({r:r,k:r.v,c:'mva'})});
+  pts.sort(function(a,b){return a.r.p-b.r.p}).forEach(function(d){
+    var px=x(d.r.p),row=placed[d.k]||(placed[d.k]=[]),offs=[0,-8,8,-15,15,-21,21,-27,27],py=y(d.k);
+    for(var o=0;o<offs.length;o++){var cy=y(d.k)+offs[o];if(row.every(function(q){return Math.hypot(q[0]-px,q[1]-cy)>=11})){py=cy;break}}
+    row.push([px,py]);d.x=px;d.y=py;pos.push(d);
   });
-  var LABEL={'Kalyan':1,'Bhiwandi':1,'Gadchiroli-Chimur':1,'Mumbai South':1,'Madha':1};
-  pos.forEach(function(d,i){var hi=d.r.p>=10;
-    s+='<g class="row" tabindex="0" data-i="'+i+'"><circle cx="'+d.x+'" cy="'+d.y+'" r="12" fill="transparent"/><circle class="dot'+(hi?' hi':'')+'" cx="'+d.x+'" cy="'+d.y+'" r="5.5"/>'+
-      (LABEL[d.r.pc]?'<text class="lbl" x="'+(d.x+(d.r.p>9?-9:9))+'" y="'+(d.y+(d.r.pc==='Gadchiroli-Chimur'?18:-8))+'" text-anchor="'+(d.r.p>9?'end':'start')+'">'+d.r.pc+'</text>':'')+'</g>'});
+  pos.forEach(function(d,i){
+    s+='<g class="row" tabindex="0" data-i="'+i+'"><circle cx="'+d.x+'" cy="'+d.y+'" r="11" fill="transparent"/>'+mark(d.c,d.x,d.y,5)+
+      (d.r.pc==='Kalyan'&&d.c==='mah'?'<text class="lbl" x="'+(d.x-10)+'" y="'+(d.y-9)+'" text-anchor="end">Kalyan</text>':'')+'</g>'});
   s+='</svg>';
-  var spos=pos.map(function(d){return d.r});
+  var spos=pos;
   var ch=document.getElementById('chart'); ch.innerHTML=s;
   var tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; ch.appendChild(tip);
-  function show(e,g){var r=spos[+g.dataset.i];tip.innerHTML='<b>'+r.pc+'</b><br>LS '+fmt(r.ls)+' → VS '+fmt(r.vs)+'<br>+'+fmt(r.d)+' (+'+r.p.toFixed(2)+'%) · Mahayuti '+r.m+'/6';tip.hidden=false;
+  function show(e,g){var r=spos[+g.dataset.i].r;tip.innerHTML='<b>'+r.pc+'</b><br>LS '+fmt(r.ls)+' → VS '+fmt(r.vs)+' (+'+r.p.toFixed(2)+'%)<br>Mahayuti '+r.m+'/6 · MVA '+r.v+'/6 · others '+(6-r.m-r.v)+'/6';tip.hidden=false;
     var b=ch.getBoundingClientRect(),gb=g.getBoundingClientRect(),w=tip.offsetWidth,px=gb.left+gb.width/2-b.left+ch.scrollLeft,lx=px+14;if(lx+w>ch.scrollWidth-8)lx=px-w-14;tip.style.left=Math.max(8,lx)+'px';tip.style.top=(gb.top-b.top-10)+'px'}
   ch.querySelectorAll('.row').forEach(function(g){g.addEventListener('mousemove',function(e){show(e,g)});g.addEventListener('focus',function(){show(null,g)});
     g.addEventListener('mouseleave',function(){tip.hidden=true});g.addEventListener('blur',function(){tip.hidden=true})});
