@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Timeline of the allegations against Chief Election Commissioner Gyanesh Kumar, and a check of Maharashtra's 2024 voter-roll growth against official ECI and CEO data.">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Vote Chori and the CEC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+
+html,body{background:#f6f5f9}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) body{background:#15131c}}
+:root[data-theme="dark"] body{background:#15131c}
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:4px;padding:10px 20px 0;max-width:960px;margin:0 auto;background:inherit;border-bottom:1px solid #dcd8e6;overflow-x:auto}
+.tabbar button{font:500 .9rem/1.2 "IBM Plex Mono",ui-monospace,monospace;padding:10px 14px;border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;background:transparent;color:#5e5a6e;cursor:pointer;white-space:nowrap}
+.tabbar button[aria-selected="true"]{background:#ffffff;color:#1d1b26;border-color:#dcd8e6;margin-bottom:-1px}
+.tabbar button:focus-visible{outline:2px solid #5b2a86;outline-offset:-2px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tabbar{border-color:#332f40}:root:not([data-theme="light"]) .tabbar button{color:#a6a1b6}:root:not([data-theme="light"]) .tabbar button[aria-selected="true"]{background:#1e1b27;color:#ece9f3;border-color:#332f40}}
+:root[data-theme="dark"] .tabbar{border-color:#332f40}:root[data-theme="dark"] .tabbar button{color:#a6a1b6}:root[data-theme="dark"] .tabbar button[aria-selected="true"]{background:#1e1b27;color:#ece9f3;border-color:#332f40}
+#timeline,#rolls{background:var(--bg);color:var(--fg)}
+#timeline .filters{top:calc(env(safe-area-inset-top,0px) + 46px)}
+
+:root #timeline{
+  --bg:#f6f5f9; --surface:#ffffff; --fg:#1d1b26; --muted:#5e5a6e; --rule:#dcd8e6;
+  --ink:#5b2a86;            
+  --alleg:#b4462d; --alleg-bg:#fbeee9;
+  --eci:#1f6f6b;   --eci-bg:#e6f3f1;
+  --inst:#3b5a8c;  --inst-bg:#e9eef7;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #timeline{
+  --bg:#15131c; --surface:#1e1b27; --fg:#ece9f3; --muted:#a6a1b6; --rule:#332f40;
+  --ink:#b993e0; --alleg:#ec8a70; --alleg-bg:#33201c; --eci:#6cc5bd; --eci-bg:#152a29; --inst:#8fb0e6; --inst-bg:#1b2436; color-scheme:dark}}
+:root[data-theme="dark"] #timeline{
+  --bg:#15131c; --surface:#1e1b27; --fg:#ece9f3; --muted:#a6a1b6; --rule:#332f40;
+  --ink:#b993e0; --alleg:#ec8a70; --alleg-bg:#33201c; --eci:#6cc5bd; --eci-bg:#152a29; --inst:#8fb0e6; --inst-bg:#1b2436; color-scheme:dark}
+#timeline{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6}
+#timeline .wrap{max-width:860px;margin:0 auto;padding-inline:20px;padding-block:40px 64px}
+#timeline h1, #timeline h2, #timeline h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+#timeline h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.01em}
+#timeline h2{font-size:1.45rem;font-weight:700;color:var(--ink)}
+#timeline h3{font-size:1.12rem;font-weight:600}
+#timeline p{margin:0}
+#timeline a{color:var(--ink);text-underline-offset:2px}
+#timeline a:focus-visible, #timeline button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#timeline .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#timeline header{display:grid;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+#timeline .lede{max-width:65ch;color:var(--muted)}
+#timeline .lede strong{color:var(--fg)}
+#timeline .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-block:28px}
+#timeline .summary div{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;display:grid;gap:4px;min-width:0}
+#timeline .summary .k{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+#timeline .summary .v{font-size:.98rem}
+#timeline .filters{display:flex;flex-wrap:wrap;gap:8px;margin-block:8px 28px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding-block:10px;z-index:2}
+#timeline .filters button{font-family:var(--mono);font-size:.8rem;border:1px solid var(--rule);background:var(--surface);color:var(--fg);padding:6px 12px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+#timeline .filters button[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+#timeline .dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:var(--muted)}
+#timeline .dot.a{background:var(--alleg)}
+#timeline .dot.e{background:var(--eci)}
+#timeline .dot.i{background:var(--inst)}
+#timeline .phase{display:grid;gap:6px;margin-block:36px 18px}
+#timeline .phase p{color:var(--muted);max-width:65ch;font-size:.95rem}
+#timeline ol.tl{list-style:none;margin:0;padding:0;border-left:3px solid var(--ink);display:grid;gap:22px}
+#timeline .ev{position:relative;padding-left:24px;display:grid;gap:8px;min-width:0}
+#timeline .ev::before{content:"";position:absolute;left:-9px;top:6px;width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--c)}
+#timeline .ev.a{--c:var(--alleg);--cb:var(--alleg-bg)}
+#timeline .ev.e{--c:var(--eci);--cb:var(--eci-bg)}
+#timeline .ev.i{--c:var(--inst);--cb:var(--inst-bg)}
+#timeline .meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+#timeline .date{font-family:var(--mono);font-size:.85rem;font-weight:500;font-variant-numeric:tabular-nums}
+#timeline .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:3px;background:var(--cb);color:var(--c)}
+#timeline .ev p{max-width:65ch}
+#timeline q{font-style:italic}
+#timeline .src{font-family:var(--mono);font-size:.76rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+#timeline .src span{color:var(--muted)}
+#timeline .status{margin-top:44px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:20px;display:grid;gap:10px}
+#timeline .status ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:65ch}
+#timeline footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--rule);font-size:.88rem;color:var(--muted);display:grid;gap:8px;max-width:70ch}
+@media (max-width:480px){#timeline{font-size:16px}
+#timeline .ev{padding-left:18px}}
+:root #rolls{
+  --bg:#f7f7f5; --surface:#ffffff; --fg:#1b1f24; --muted:#5a6270; --rule:#dfe1e4; --soft:#eef0f2;
+  --accent:#b5530f; --bar:#3d6f8f; --bar-hi:#b5530f; --ref:#8a919c;
+  --mah:#c2551a; --mva:#2f6f9f; --oth:#7b7f87;
+  --display:"Fraunces", Georgia, serif;
+  --body:"Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #rolls{
+  --bg:#14171b; --surface:#1c2026; --fg:#e8eaed; --muted:#a2a9b4; --rule:#2f343c; --soft:#232830;
+  --accent:#f0954f; --bar:#78a9c9; --bar-hi:#f0954f; --ref:#8d949f; --mah:#ef8a4c; --mva:#76b0dd; --oth:#a2a7af; color-scheme:dark}}
+:root[data-theme="dark"] #rolls{
+  --bg:#14171b; --surface:#1c2026; --fg:#e8eaed; --muted:#a2a9b4; --rule:#2f343c; --soft:#232830;
+  --accent:#f0954f; --bar:#78a9c9; --bar-hi:#f0954f; --ref:#8d949f; --mah:#ef8a4c; --mva:#76b0dd; --oth:#a2a7af; color-scheme:dark}
+#rolls{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6}
+#rolls .wrap{max-width:960px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:grid;gap:44px}
+#rolls h1, #rolls h2, #rolls h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+#rolls h1{font-size:clamp(1.9rem,4.6vw,2.8rem)}
+#rolls h2{font-size:1.5rem}
+#rolls h3{font-size:1.1rem}
+#rolls p{margin:0;max-width:68ch}
+#rolls a{color:var(--accent);text-underline-offset:2px}
+#rolls :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#rolls .eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#rolls section{display:grid;gap:14px;min-width:0}
+#rolls header{display:grid;gap:14px}
+#rolls .num{font-variant-numeric:tabular-nums}
+#rolls .verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+#rolls .verdict div{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px;display:grid;gap:4px;align-content:start}
+#rolls .verdict b{font-family:var(--display);font-size:1.7rem;font-variant-numeric:tabular-nums;color:var(--fg)}
+#rolls .verdict span{font-size:.9rem;color:var(--muted)}
+#rolls .callout{border-left:3px solid var(--accent);padding:4px 0 4px 16px;max-width:72ch;display:grid;gap:8px}
+#rolls .chart{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px;overflow-x:auto;position:relative}
+#rolls .chart svg{display:block;width:100%;min-width:560px;height:auto}
+#rolls .chart text{fill:var(--muted);font-family:var(--mono);font-size:11px}
+#rolls .chart .lbl{fill:var(--fg);font-family:var(--body);font-size:12px}
+#rolls .chart .bar{fill:var(--bar)}
+#rolls .chart .bar.hi{fill:var(--bar-hi)}
+#rolls .chart .row:hover .bar, #rolls .chart .row:focus .bar{opacity:.75}
+#rolls .chart .grid{stroke:var(--rule)}
+#rolls .chart .refl{stroke:var(--ref);stroke-dasharray:4 3}
+#rolls .tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font-size:.8rem;padding:6px 9px;border-radius:4px;white-space:nowrap;font-variant-numeric:tabular-nums}
+#rolls .tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--rule);border-radius:6px}
+#rolls table{border-collapse:collapse;width:100%;font-size:.9rem}
+#rolls th, #rolls td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+#rolls th{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--soft)}
+#rolls td.r, #rolls th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+#rolls tr:last-child td{border-bottom:0}
+#rolls .pill{display:inline-block;font-family:var(--mono);font-size:.72rem;padding:1px 7px;border-radius:3px;border:1px solid currentColor}
+#rolls .pill.m{color:var(--mah)}
+#rolls .pill.v{color:var(--mva)}
+#rolls .pill.o{color:var(--oth)}
+#rolls .flag{color:var(--accent);font-weight:600}
+#rolls details{border-bottom:1px solid var(--rule)}
+#rolls details:last-child{border-bottom:0}
+#rolls summary{cursor:pointer;padding:10px 14px;display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:baseline;list-style:none}
+#rolls summary::-webkit-details-marker{display:none}
+#rolls summary .n{font-weight:600}
+#rolls summary .p{font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:.85rem}
+#rolls summary .w{font-size:.8rem;color:var(--muted)}
+#rolls details table{font-size:.85rem}
+#rolls details > div{padding:0 14px 12px;overflow-x:auto}
+#rolls .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#rolls .controls input{font:inherit;padding:6px 10px;border:1px solid var(--rule);border-radius:4px;background:var(--surface);color:var(--fg);min-width:0;flex:1 1 200px;max-width:320px}
+#rolls .small{font-size:.85rem;color:var(--muted)}
+#rolls button.sort{all:unset;cursor:pointer;display:inline-flex;gap:4px;align-items:center;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit}
+#rolls button.sort:hover{color:var(--fg)}
+#rolls button.sort:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#rolls th[aria-sort="ascending"], #rolls th[aria-sort="descending"]{color:var(--fg)}
+#rolls .arr{font-size:.7rem;opacity:.7}
+#rolls a.dl{display:inline-flex;align-items:center;padding:7px 14px;border-radius:4px;background:var(--accent);color:var(--surface);text-decoration:none;font-weight:600;font-size:.9rem}
+#rolls a.dl:hover{opacity:.9}
+#rolls ol.src{margin:0;padding-left:20px;display:grid;gap:6px;font-size:.9rem;max-width:80ch}
+#rolls ul.tight{margin:0;padding-left:20px;display:grid;gap:6px;max-width:72ch}
+@media (max-width:520px){#rolls summary{grid-template-columns:1fr auto}
+#rolls summary .w{grid-column:1/-1}}
+</style>
+</head>
+<body>
+
+<nav class="tabbar" role="tablist" aria-label="Sections">
+<button role="tab" id="tab-timeline" data-t="timeline" aria-controls="timeline" aria-selected="true">Allegations timeline</button>
+<button role="tab" id="tab-rolls" data-t="rolls" aria-controls="rolls" aria-selected="false">Maharashtra voter-roll check</button>
+</nav>
+<div id="timeline" role="tabpanel" aria-labelledby="tab-timeline">
+<div class="wrap">
+<header>
+  <span class="eyebrow">India · Election Commission · Aug 2025 – Oct 2026</span>
+  <h1>Vote Chori and the Chief Election Commissioner</h1>
+  <p class="lede">A dated record of the allegations against Chief Election Commissioner <strong>Gyanesh Kumar</strong>, who raised them, and how the Election Commission of India (ECI) answered: by letter, by press conference, and by press note. Each entry links to the news reports it is drawn from. Compiled 10 October 2026.</p>
+</header>
+
+<section class="summary" aria-label="Key facts">
+  <div><span class="k">Who started it</span><span class="v">Rahul Gandhi, Leader of Opposition (Congress), press conference of 7 Aug 2025</span></div>
+  <div><span class="k">First ECI reply</span><span class="v">Same day: letter from Karnataka CEO seeking a signed declaration under Rule 20(3)(b)</span></div>
+  <div><span class="k">CEC's own response</span><span class="v">Press conference, 17 Aug 2025: affidavit in 7 days or apologise</span></div>
+  <div><span class="k">Now</span><span class="v">Supreme Court has issued notice on pleas to suspend the CEC; removal notice pending in Rajya Sabha</span></div>
+</section>
+
+<nav class="filters" aria-label="Filter entries">
+  <button type="button" id="f-all" data-f="all" aria-pressed="true">All entries</button>
+  <button type="button" id="f-a" data-f="a" aria-pressed="false"><span class="dot a"></span>Allegations</button>
+  <button type="button" id="f-e" data-f="e" aria-pressed="false"><span class="dot e"></span>ECI responses</button>
+  <button type="button" id="f-i" data-f="i" aria-pressed="false"><span class="dot i"></span>Parliament &amp; courts</button>
+</nav>
+
+<!-- PHASE 0 -->
+<div class="phase"><h2>Background</h2></div>
+<ol class="tl">
+  <li class="ev i">
+    <div class="meta"><span class="date">17–19 Feb 2025</span><span class="tag">Appointment</span></div>
+    <h3>Gyanesh Kumar becomes the 26th CEC</h3>
+    <p>A selection panel chaired by PM Modi chose Kumar, the first CEC appointed under the 2023 Chief Election Commissioner and Other Election Commissioners Act. Rahul Gandhi, a panel member, submitted a dissent note. Haryana Chief Secretary Vivek Joshi joined as Election Commissioner alongside Sukhbir Singh Sandhu.</p>
+    <div class="src"><a href="https://etvbharat.com/en/!bharat/gyanesh-kumar-appointed-chief-election-commissioner-enn25021800521" target="_blank" rel="noopener">ETV Bharat</a><a href="https://www.tribuneindia.com/news/india/gyanesh-new-cec-haryana-cs-joshi-his-deputy/amp" target="_blank" rel="noopener">The Tribune</a></div>
+  </li>
+</ol>
+
+<!-- PHASE 1 -->
+<div class="phase"><span class="eyebrow">Phase 1</span><h2>The "vote chori" charge and the affidavit challenge</h2><p>August to November 2025. The opposition alleges manipulated voter rolls; the ECI and state Chief Electoral Officers (CEOs) demand sworn evidence.</p></div>
+<ol class="tl">
+  <li class="ev a">
+    <div class="meta"><span class="date">7 Aug 2025</span><span class="tag">Allegation</span></div>
+    <h3>Rahul Gandhi's Mahadevapura presentation</h3>
+    <p>At a New Delhi press conference, Gandhi alleged that more than one lakh votes were "stolen" in the Mahadevapura segment of Bangalore Central during the 2024 Lok Sabha polls, through duplicate voters, fake or invalid addresses, bulk single-address voters, invalid photos and misuse of Form 6.</p>
+    <div class="src"><a href="https://sundayguardianlive.com/news/ec-asks-rahul-to-submit-signed-declaration-of-voter-theft-allegation-by-today-evening-136910/" target="_blank" rel="noopener">Sunday Guardian</a><a href="https://www.deccanherald.com/amp/story/india%2Fsubmit-declaration-under-oath-in-7-days-or-claims-will-be-considered-invalid-cec-on-rahuls-vote-theft-allegations-3684647" target="_blank" rel="noopener">Deccan Herald</a></div>
+  </li>
+  <li class="ev e">
+    <div class="meta"><span class="date">7 Aug 2025</span><span class="tag">ECI · Letter</span></div>
+    <h3>Karnataka CEO writes: sign a declaration under oath</h3>
+    <p>Within hours, the Karnataka CEO wrote to Gandhi asking him to sign and return a declaration under Rule 20(3)(b) of the Registration of Electors Rules, 1960, with the names of the electors concerned. The CEOs of Haryana and Maharashtra sent similar letters about his earlier claims in those states. AICC general secretary K.C. Venugopal said the party would respond with evidence.</p>
+    <div class="src"><a href="https://www.thestatesman.com/india/cec-asks-rahul-gandhi-to-substantiate-allegations-against-poll-panel-under-oath-1503468163.html" target="_blank" rel="noopener">The Statesman</a><a href="https://keralakaumudi.com/en/news/news.php?id=1586753" target="_blank" rel="noopener">Kerala Kaumudi</a></div>
+  </li>
+  <li class="ev e">
+    <div class="meta"><span class="date">10 Aug 2025</span><span class="tag">ECI · Notice</span></div>
+    <h3>Notice on the "voted twice" claim</h3>
+    <p>The Karnataka CEO asked Gandhi for the documents behind his claim that voter Shakun Rani voted twice. The notice said she told inquiry officials she voted once, and that the tick-marked document shown at the press conference was not issued by the polling officer. The Haryana CEO gave him 10 days to submit documents and a signed declaration. The ECI said he could still sign the declaration or apologise.</p>
+    <div class="src"><a href="https://www.newsonair.gov.in/ec-issues-notice-to-congress-leader-rahul-gandhi-for-allegations-of-voter-fraud-in-2024-lok-sabha-polls" target="_blank" rel="noopener">All India Radio (newsonair)</a><a href="https://www.navhindtimes.in/2025/08/11/nationalnews/ktaka-ceo-seeks-proof-from-rahul-on-double-voting-claim/" target="_blank" rel="noopener">Navhind Times</a></div>
+  </li>
+  <li class="ev e">
+    <div class="meta"><span class="date">17 Aug 2025</span><span class="tag">ECI · Press conference</span></div>
+    <h3>CEC Gyanesh Kumar's seven-day ultimatum</h3>
+    <p>In his first press conference since the allegations, flanked by both Election Commissioners, Kumar said Gandhi must file a signed affidavit within seven days or apologise; otherwise the claims would be treated as baseless. <q>There is no third option.</q> He defended the Bihar Special Intensive Revision (SIR) and did not name Gandhi. Deccan Herald noted he did not answer questions on why no oath was sought from BJP MP Anurag Thakur over similar claims. The same day, Gandhi launched the Voter Adhikar Yatra in Bihar.</p>
+    <div class="src"><a href="https://www.theweek.in/wire-updates/national/2025/08/17/del104-ec-2ndld-bihar.html" target="_blank" rel="noopener">PTI via The Week</a><a href="https://www.deccanherald.com/amp/story/india%2Fsubmit-declaration-under-oath-in-7-days-or-claims-will-be-considered-invalid-cec-on-rahuls-vote-theft-allegations-3684647" target="_blank" rel="noopener">Deccan Herald</a></div>
+  </li>
+  <li class="ev a">
+    <div class="meta"><span class="date">18 Aug 2025</span><span class="tag">Allegation</span></div>
+    <h3>Gandhi names all three commissioners</h3>
+    <p>Speaking at Gaya, Bihar, Gandhi directly attacked Kumar and ECs Sandhu and Joshi, and warned of action against them if the INDIA bloc formed the government.</p>
+    <div class="src"><a href="https://www.theweek.in/wire-updates/national/2025/08/18/del113-rahul-bh-ec-ld-yatra.html" target="_blank" rel="noopener">PTI via The Week</a></div>
+  </li>
+  <li class="ev a">
+    <div class="meta"><span class="date">18 Sep 2025</span><span class="tag">Allegation</span></div>
+    <h3>Aland deletions: "CEC is protecting vote chors"</h3>
+    <p>Gandhi alleged about 6,018 voters in Karnataka's Aland constituency were targeted for deletion using software and out-of-state mobile numbers, and said the Karnataka CID had written to the ECI 18 times in 18 months without getting the data it sought. He accused Kumar personally of shielding those responsible.</p>
+    <div class="src"><a href="https://thewire.in/politics/rahul-gandhi-accuses-ec-of-protecting-vote-theft-blocking-probe-into-mass-voter-deletions" target="_blank" rel="noopener">The Wire</a><a href="https://www.businesstoday.in/amp/india/story/vote-choro-ki-raksha-kar-rahe-hain-rahul-gandhis-all-out-attack-on-cec-gyanesh-kumar-494553-2025-09-18" target="_blank" rel="noopener">Business Today</a></div>
+  </li>
+  <li class="ev e">
+    <div class="meta"><span class="date">18 Sep 2025</span><span class="tag">ECI · Statement</span></div>
+    <h3>ECI calls the charge incorrect and baseless</h3>
+    <p>The ECI replied the same day that members of the public cannot delete any vote online, and that no deletion happens without the affected voter being heard. It acknowledged that an FIR was filed in 2023 over unsuccessful deletion attempts in Aland.</p>
+    <div class="src"><a href="https://www.theweek.in/wire-updates/national/2025/09/18/del89-ld-all-rahul.html" target="_blank" rel="noopener">PTI via The Week</a><a href="https://www.theweek.in/wire-updates/national/2025/09/18/del61-cong-ec.html" target="_blank" rel="noopener">PTI via The Week (2)</a></div>
+  </li>
+  <li class="ev a">
+    <div class="meta"><span class="date">5 Nov 2025</span><span class="tag">Allegation</span></div>
+    <h3>The "H Files" on Haryana</h3>
+    <p>Before Bihar's first phase of polling, Gandhi alleged that 25 lakh fake or duplicate entries, about one in eight voters, were in Haryana's 2024 rolls, including one photo he said appeared on 22 voter IDs.</p>
+    <div class="src"><a href="https://www.india.com/news/india/zero-appeals-against-voter-rolls-ec-rebuts-rahul-gandhis-h-files-haryana-voter-fraud-allegations-asks-why-congress-didnt-file-appeals-in-bihar-sir-vote-chori-8168518/" target="_blank" rel="noopener">India.com</a></div>
+  </li>
+  <li class="ev e">
+    <div class="meta"><span class="date">5 Nov 2025</span><span class="tag">ECI · Rebuttal</span></div>
+    <h3>"Zero appeals" against Haryana rolls</h3>
+    <p>ECI sources and the Haryana CEO said Congress had filed no objections or appeals during roll revision, that draft rolls were shared with parties on 2 Aug 2024, and that 23 election petitions were filed after results, where Gandhi could place his evidence.</p>
+    <div class="src"><a href="https://www.etvbharat.com/en/bharat/ec-responds-to-rahul-gandhis-sarkar-chori-in-haryana-allegation-enn25110503825" target="_blank" rel="noopener">ETV Bharat</a></div>
+  </li>
+</ol>
+
+<!-- PHASE 2 -->
+<div class="phase"><span class="eyebrow">Phase 2</span><h2>The removal motions</h2><p>March to July 2026. For the first time, MPs seek a CEC's removal through the procedure used for Supreme Court judges.</p></div>
+<ol class="tl">
+  <li class="ev i">
+    <div class="meta"><span class="date">12–13 Mar 2026</span><span class="tag">Parliament</span></div>
+    <h3>First-ever notice to remove a CEC</h3>
+    <p>130 Lok Sabha MPs and 63 Rajya Sabha MPs from INDIA bloc parties signed notices listing seven charges, from partisan conduct to obstructing investigations and mass disenfranchisement. The TMC cited deletions during West Bengal's SIR. Union Minister S.P. Singh Baghel said the move showed no faith in constitutional institutions.</p>
+    <div class="src"><a href="https://www.etvbharat.com/en/bharat/several-mp-sign-notice-seeking-motion-for-cec-gyanesh-kumar-removal-enn26031204384" target="_blank" rel="noopener">ETV Bharat</a><a href="https://www.newsonair.gov.in/opposition-mps-seek-motion-to-remove-chief-election-commissioner-gyanesh-kumar/" target="_blank" rel="noopener">All India Radio (newsonair)</a></div>
+  </li>
+  <li class="ev i">
+    <div class="meta"><span class="date">6 Apr 2026</span><span class="tag">Parliament</span></div>
+    <h3>Speaker and Chairman reject the notices</h3>
+    <p>Lok Sabha Speaker Om Birla and Rajya Sabha Chairman C.P. Radhakrishnan declined to admit the notices. The Rajya Sabha bulletin said the decision followed the constitutional and statutory provisions on removal.</p>
+    <div class="src"><a href="https://www.thequint.com/amp/story/news/breaking-news/rajya-sabha-chairman-rejects-opposition-motion-cec" target="_blank" rel="noopener">The Quint</a><a href="https://www.business-standard.com/india-news/gyanesh-kumar-removal-row-how-can-chief-election-commissioner-be-removed-126092500227_1.html" target="_blank" rel="noopener">Business Standard</a></div>
+  </li>
+  <li class="ev i">
+    <div class="meta"><span class="date">24 Apr 2026</span><span class="tag">Parliament</span></div>
+    <h3>Fresh Rajya Sabha notice, nine charges</h3>
+    <p>Jairam Ramesh (Congress) and Sagarika Ghose (TMC) submitted a new notice signed by 73 Rajya Sabha MPs, above the 50 required. It argued Kumar had issued no show-cause notice or public response to opposition complaints, in contrast to action on BJP complaints, and sought an inquiry committee and his recusal meanwhile.</p>
+    <div class="src"><a href="https://www.dailyexcelsior.com/oppn-parties-move-fresh-notice-in-rajya-sabha-seeking-removal-of-cec-gyanesh-kumar/" target="_blank" rel="noopener">PTI via Daily Excelsior</a><a href="https://www.dtnext.in/news/national/oppn-parties-move-fresh-notice-in-rajya-sabha-for-removal-of-cec-gyanesh-kumar" target="_blank" rel="noopener">DT Next</a></div>
+  </li>
+  <li class="ev i">
+    <div class="meta"><span class="date">27 May 2026</span><span class="tag">Supreme Court</span></div>
+    <h3>Bihar SIR order upheld</h3>
+    <p>The Supreme Court upheld the ECI's 24 June 2025 order for the Bihar SIR, a ruling the Commission later cited in its defence on Form 6.</p>
+    <div class="src"><a href="https://thefederal.com/category/news/ec-calls-rahul-gandhis-form-6-charge-misleading-258664" target="_blank" rel="noopener">PTI via The Federal</a></div>
+  </li>
+  <li class="ev a">
+    <div class="meta"><span class="date">17 Jul 2026</span><span class="tag">Allegation</span></div>
+    <h3>No word on the April notice</h3>
+    <p>Jairam Ramesh said the opposition had heard nothing on its April notice and would keep pressing for Kumar's removal.</p>
+    <div class="src"><a href="https://theprint.in/india/gyanesh-kumar-a-weapon-of-mass-destruction-for-electoral-rolls-congs-jairam-ramesh/2989138/" target="_blank" rel="noopener">PTI via ThePrint</a></div>
+  </li>
+</ol>
+
+<!-- PHASE 3 -->
+<div class="phase"><span class="eyebrow">Phase 3</span><h2>Dissent inside the Commission</h2><p>September to October 2026. A newspaper investigation says the two Election Commissioners objected on record to decisions taken without them.</p></div>
+<ol class="tl">
+  <li class="ev a">
+    <div class="meta"><span class="date">23 Sep 2026</span><span class="tag">Media report</span></div>
+    <h3>Indian Express: 14 objections in 10 months</h3>
+    <p>The Indian Express reported that ECs Sukhbir Singh Sandhu and Vivek Joshi formally objected at least 14 times, on changes to Form 6, deletions and restorations, appeals, and centralised access to the ERONet roll database. It said the full Commission did not meet from May until 9 September, and that the two wrote to the Cabinet Secretary over a work-allocation order.</p>
+    <div class="src"><a href="https://theprint.in/politics/act-of-treason-rahul-to-kejriwal-oppns-all-out-attack-on-gyanesh-kumar-modi-govt-over-ec-dissent/3051262/" target="_blank" rel="noopener">ThePrint</a><a href="https://www.moneylife.in/article/2-election-commissioners-raise-14-objections-over-voter-rolls-form-6-and-it-controls-eci-says-decisions-were-unanimous/81733.html" target="_blank" rel="noopener">Moneylife</a></div>
+  </li>
+  <li class="ev e">
+    <div class="meta"><span class="date">23 Sep 2026</span><span class="tag">ECI · Press note</span></div>
+    <h3>"Decisions unanimous"</h3>
+    <p>The ECI said all its decisions, including SIR, carried the approval of all three members, and that commissioners' observations during drafting were routine in a multi-member body. It added that the commissioners had only made suggestions, which were examined. Reuters reported that Kumar and the two ECs did not comment personally.</p>
+    <div class="src"><a href="https://theprint.in/politics/ec-reacts-to-report-on-dissent-in-poll-body-decisions-unanimous-differing-views-part-of-deliberations/3050872/" target="_blank" rel="noopener">ThePrint</a><a href="https://www.uniindia.com/national/ec-internal-rift-sir/189395" target="_blank" rel="noopener">UNI</a><a href="https://kuwaittimes.com/article/50652/world/subcontinent/india-poll-chief-gyanesh-kumar-under-pressure/amp" target="_blank" rel="noopener">Reuters via Kuwait Times</a></div>
+  </li>
+  <li class="ev a">
+    <div class="meta"><span class="date">23 Sep 2026</span><span class="tag">Allegation</span></div>
+    <h3>Opposition demands resignation</h3>
+    <p>Congress president Mallikarjun Kharge, Kapil Sibal and Shiv Sena (UBT) MP Sanjay Raut demanded Kumar's resignation, suspension or prosecution. Sibal said the report showed the majority of the Commission was not with the CEC.</p>
+    <div class="src"><a href="https://telanganatoday.com/sir-row-congress-demands-cec-gyanesh-kumars-resignation" target="_blank" rel="noopener">Telangana Today</a><a href="https://theprint.in/india/cec-gyanesh-kumar-will-go-to-jail-claims-raut-after-report-on-differences-in-poll-panel-over-sir/3050744/" target="_blank" rel="noopener">PTI via ThePrint</a></div>
+  </li>
+  <li class="ev a">
+    <div class="meta"><span class="date">24 Sep 2026</span><span class="tag">Allegation</span></div>
+    <h3>Gandhi: resign and "turn approver"</h3>
+    <p>At a press conference Gandhi demanded Kumar's immediate resignation, framed the issue as "vote chori, kanoon chori, sanstha chori", and questioned the 2023 law's immunity clause and the appointment process. <q>Gyanesh Kumar should think seriously and turn approver.</q> The opposition began preparing a third removal notice in both Houses.</p>
+    <div class="src"><a href="https://www.uniindia.com/national/politics-congress-cec/191355" target="_blank" rel="noopener">UNI</a><a href="https://www.outlookindia.com/national/gyanesh-kumar-must-resign-immediately-rahul-gandhi-alleges-vote-rigging-attacks-eci" target="_blank" rel="noopener">Outlook</a><a href="https://www.theweek.in/news/india/2026/09/24/pressure-mounts-on-cec-gyanesh-kumar-opposition-plans-removal-motion-cjp-threatens-nationwide-protest.amp.html" target="_blank" rel="noopener">The Week</a></div>
+  </li>
+  <li class="ev e">
+    <div class="meta"><span class="date">26 Sep 2026</span><span class="tag">ECI · Press note</span></div>
+    <h3>Full-Commission meeting and detailed note</h3>
+    <p>Kumar, Sandhu and Joshi met at Nirvachan Sadan. The ECI issued a press note with a photograph of all three, addressing new-voter enrolment and Form 6, the SIR schedule, ECINET access, and the letter the two ECs sent to the Cabinet Secretary. It said the Form 6 declaration had been upheld by the Supreme Court.</p>
+    <div class="src"><a href="https://telanganatoday.com/election-commission-denies-rift-within-poll-panel-clarifies-on-form-6-sir-decisions" target="_blank" rel="noopener">Telangana Today</a><a href="https://www.newsbytesapp.com/news/politics/election-commission-meeting-amidst-controversy/story" target="_blank" rel="noopener">NewsBytes</a></div>
+  </li>
+  <li class="ev i">
+    <div class="meta"><span class="date">5 Oct 2026</span><span class="tag">Supreme Court</span></div>
+    <h3>No suspension for now; notice issued</h3>
+    <p>A bench of CJI Surya Kant and Justices Joymalya Bagchi and V. Mohana declined an ex-parte order suspending Kumar and issued notice to the Centre, the ECI, the CEC, both ECs and two senior officials. The petitions seek suspension, an SIT or judicial inquiry, and a ruling that decisions lacking the majority's concurrence are void.</p>
+    <div class="src"><a href="https://www.livelaw.in/top-stories/supreme-court-refuses-interim-plea-to-suspend-cec-gyanesh-kumars-issues-notice-on-plea-challenging-eci-decisions-553095" target="_blank" rel="noopener">LiveLaw</a><a href="https://www.uniindia.com/national/sc-refuses-ex-parte-suspension-of-cec-gyanesh-kumar-seeks-responses-over-sir-decisions/203163" target="_blank" rel="noopener">UNI</a></div>
+  </li>
+  <li class="ev e">
+    <div class="meta"><span class="date">5 Oct 2026</span><span class="tag">ECI · Fact check</span></div>
+    <h3>Form 6 claim called "misleading"</h3>
+    <p>Responding to Gandhi's post that Kumar changed Form 6 illegally and unilaterally, the ECI said the Bihar SIR order of 24 June 2025 had unanimous approval and was upheld by the Supreme Court on 27 May 2026. It also denied withdrawing its September press note from its website.</p>
+    <div class="src"><a href="https://thefederal.com/category/news/ec-calls-rahul-gandhis-form-6-charge-misleading-258664" target="_blank" rel="noopener">PTI via The Federal</a></div>
+  </li>
+</ol>
+
+<section class="status" aria-labelledby="st">
+  <h2 id="st">Where things stand (10 Oct 2026)</h2>
+  <ul>
+    <li>The Supreme Court petitions are pending after notice; Kumar remains in office.</li>
+    <li>The 24 April Rajya Sabha removal notice was reported as still pending in late September. A third notice was being prepared; I could not confirm from reliable reports whether it has been filed.</li>
+    <li>The ECI's position is unchanged: its decisions were unanimous and lawful, and the allegations are baseless. Kumar has not given a fresh press conference on the dissent report.</li>
+    <li>Rahul Gandhi has not filed the declaration under oath that the ECI demanded in August 2025.</li>
+  </ul>
+</section>
+
+<footer>
+  <p><strong>Sourcing.</strong> Entries draw on news agencies (PTI, UNI, Reuters, IANS), national outlets (The Indian Express as reported by others, ThePrint, The Wire, Deccan Herald, Business Standard, Outlook), the legal outlet LiveLaw, and the public broadcaster All India Radio. No Instagram or Facebook material is used. ECI and CEO statements first posted on X are cited through the news reports that carried them; official press notes are published at <a href="https://www.eci.gov.in/" target="_blank" rel="noopener">eci.gov.in</a>.</p>
+  <p>Text is paraphrased. Quotes are kept short. Allegations are reported as claims, not findings.</p>
+</footer>
+</div>
+</div>
+<div id="rolls" role="tabpanel" aria-labelledby="tab-rolls" hidden>
+<div class="wrap">
+<header>
+  <span class="eyebrow">Maharashtra · Lok Sabha May 2024 → Vidhan Sabha Nov 2024 · Checked against official rolls</span>
+  <h1>Did Maharashtra's voter rolls swell before the Assembly election?</h1>
+  <p>This page checks the opposition's claim of an abnormal rise in registered voters between the Lok Sabha and Assembly elections of 2024. Lok Sabha electors come from the Election Commission of India (ECI). Assembly electors come from the Chief Electoral Officer (CEO), Maharashtra, final roll of 30 Oct 2024. Results come from ECI. All counts are general electors. Prepared 11 Oct 2026.</p>
+</header>
+
+<section aria-labelledby="v">
+  <h2 id="v">Verdict</h2>
+  <div class="verdict">
+    <div><span>Net new electors in ~5 months</span><b>+40.81 lakh</b><span>9,29,43,890 → 9,70,25,119 (+4.39%)</span></div>
+    <div><span>Lok Sabha seats above +10%</span><b>1 of 48</b><span>Kalyan, +10.26%</span></div>
+    <div><span>Seats where electors fell</span><b>0 of 48</b><span>Smallest rise: Gadchiroli–Chimur, +1.96%</span></div>
+    <div><span>Assembly seats won by Mahayuti</span><b>230 of 288</b><span>BJP 132, Shiv Sena 57, NCP 41</span></div>
+  </div>
+  <div class="callout">
+    <p><strong>The statewide number is confirmed.</strong> Official figures show a net gain of 40.81 lakh electors between the two elections. By The Wire's compilation of ECI data, the 2019 gain for the same interval was 11.56 lakh.</p>
+    <p><strong>Large rises were concentrated, not universal.</strong> Growth was highest in the urban belt of Thane, Palghar, Pune and Nagpur. Only Kalyan crossed +10% as a whole Lok Sabha seat, and no seat recorded a net fall.</p>
+    <p><strong>Growth tracks results only weakly.</strong> Mahayuti won 76% of assembly seats inside the lowest-growth Lok Sabha seats and 83–90% inside the higher-growth ones. The correlation across the 48 seats is 0.17. That pattern is consistent with additions helping at the margin, but it does not prove the additions decided outcomes.</p>
+  </div>
+</section>
+
+<section aria-labelledby="c">
+  <h2 id="c">Change in registered electors, by Lok Sabha seat</h2>
+  <p class="small">Each Lok Sabha seat contains six assembly seats. Assembly electors were summed into their Lok Sabha seat so that both sides of the comparison use official data. Dashed lines mark the state average (+4.39%) and the +10% threshold. Hover a bar for counts.</p>
+  <div class="chart" id="chart"></div>
+</section>
+
+<section aria-labelledby="b">
+  <h2 id="b">Do higher-growth areas show bigger Mahayuti wins?</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Elector growth (Lok Sabha seat)</th><th class="r">Lok Sabha seats</th><th class="r">Assembly seats</th><th class="r">Mahayuti won</th><th class="r">MVA won</th><th class="r">Mahayuti share</th></tr></thead>
+    <tbody id="bins"></tbody>
+  </table></div>
+  <p class="small">Mahayuti = BJP, Shiv Sena, NCP. MVA = INC, Shiv Sena (UBT), NCP (SP). The 12 other winners (small allies, independents, SP, AIMIM, CPI(M), PWPI) are counted in neither column.</p>
+</section>
+
+<section aria-labelledby="a">
+  <h2 id="a">Assembly-level evidence that is officially sourced</h2>
+  <p>The ECI does not publish Lok Sabha electors per assembly segment in a form this check could retrieve. The assembly-level figures below come from ECI and CEO data obtained under RTI and published by The Wire. Their November figures match the CEO's final roll exactly.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Assembly seat</th><th class="r">Lok Sabha 2024</th><th class="r">Vidhan Sabha 2024</th><th class="r">Net change</th><th class="r">Change</th><th>2024 winner</th></tr></thead>
+    <tbody>
+      <tr><td>143 Dombivali</td><td class="r">2,75,110</td><td class="r">3,13,122</td><td class="r">+38,012</td><td class="r flag">+13.8%</td><td>Ravindra Chavan <span class="pill m">BJP</span></td></tr>
+      <tr><td>138 Kalyan West</td><td class="r">4,00,138</td><td class="r">4,40,597</td><td class="r">+40,459</td><td class="r flag">+10.1%</td><td>Vishwanath Bhoir <span class="pill m">SHS</span></td></tr>
+      <tr><td>142 Kalyan East</td><td class="r">2,99,380</td><td class="r">3,29,173</td><td class="r">+29,793</td><td class="r">+9.95%</td><td>Sulbha Gaikwad <span class="pill m">BJP</span></td></tr>
+      <tr><td>52 Nagpur South West</td><td class="r">3,76,408</td><td class="r">4,11,241</td><td class="r">+34,833</td><td class="r">+9.25%</td><td>Devendra Fadnavis <span class="pill m">BJP</span></td></tr>
+      <tr><td>55 Nagpur Central</td><td class="r">3,15,849</td><td class="r">3,41,169</td><td class="r">+25,320</td><td class="r">+8.0%</td><td>Pravin Datke <span class="pill m">BJP</span></td></tr>
+    </tbody>
+  </table></div>
+  <ul class="tight">
+    <li>The Wire counts <strong>27 assembly seats</strong> with more than 8% net additions. Mahayuti won 23 of them; NCP (SP), AIMIM (Malegaon Central) and SP (Bhiwandi East) won the rest. The ten highest by percentage were Dombivali, Kalyan Rural, Mira Bhayandar, Kalyan West, Bhiwandi East, Ulhasnagar, Kalyan East, Malegaon Central, Bhosari and Panvel.</li>
+    <li>The Wire also reports <strong>63 assembly seats</strong> that lost electors between 2019 and the 2024 Lok Sabha, then gained between June and October 2024. Mahayuti won 54 of them.</li>
+    <li><strong>The ECI's own position</strong> (reply to Congress, 24 Dec 2024): only six assembly seats had total additions above 50,000; average deletions were 2,779 per seat; and there were "no bulk deletions or unusual deletion patterns."</li>
+    <li><strong>One discrepancy:</strong> The Wire's text gives Nagpur South West +38,161 (10.1%), while its own table gives +34,833. The table figure reconciles with the CEO's final roll and is used here.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="mg">
+  <h2 id="mg">Seats where voters added exceed the winning margin</h2>
+  <div class="verdict">
+    <div><span>Margin smaller than net voters added</span><b>78 of 288</b><span>Mahayuti 53 · MVA 22 · others 3</span></div>
+    <div><span>Margin % smaller than growth %</span><b>61 of 288</b><span>Mahayuti 40 · MVA 18 · others 3</span></div>
+    <div><span>Stricter: margin smaller than added voters × turnout</span><b>57 of 288</b><span>Mahayuti 37 · MVA 17 · others 3</span></div>
+    <div><span>Average winning margin</span><b>15.8%</b><span>of votes polled, all 288 seats</span></div>
+  </div>
+  <div class="callout">
+    <p><strong>How to read this.</strong> In 78 seats, more voters were added to the roll than the winner's margin of victory. That shows where additions were large enough to matter. It does not show the added voters decided these seats: they did not all vote, and they did not all vote for the winner.</p>
+    <p><strong>The pattern cuts both ways.</strong> Mahayuti won 68% of these 78 close seats, less than its 80% share of all seats. MVA won 22 of them, including Karjat Jamkhed, Vadgaon Sheri, Beed, Jogeshwari East and Versova. Close seats were close for both sides.</p>
+    <p class="small">Voters added per assembly seat is estimated from its Lok Sabha seat's growth rate, because official assembly-level Lok Sabha counts are not available. The five seats marked ✓ use actual RTI figures. Margin % = (winner − runner-up) ÷ total votes polled.</p>
+  </div>
+  <div class="controls"><label for="q2" class="small">Filter</label><input id="q2" type="search" placeholder="Seat, Lok Sabha seat or party">
+    <a id="dlx" class="dl" href="Maharashtra_voter_roll_check_2024.xlsx" download>Download Excel (all 288 seats)</a><span id="dlmsg" class="small" role="status"></span></div>
+  <p class="small">Click any column heading to sort. The Excel file has four sheets: close seats, all 288 assembly seats with live formulas, the 48 Lok Sabha seats, and notes with sources.</p>
+  <div class="tablewrap"><table>
+    <thead><tr id="closehead"><th data-s="name"><button type="button" class="sort">Assembly seat <span class="arr">↕</span></button></th><th data-s="pc"><button type="button" class="sort">Lok Sabha seat <span class="arr">↕</span></button></th><th data-s="party"><button type="button" class="sort">Winner <span class="arr">↕</span></button></th><th class="r" data-s="m"><button type="button" class="sort">Margin <span class="arr">↕</span></button></th><th class="r" data-s="mp"><button type="button" class="sort">Margin % <span class="arr">↕</span></button></th><th class="r" data-s="add"><button type="button" class="sort">Voters added <span class="arr">↕</span></button></th><th class="r" data-s="ratio"><button type="button" class="sort">Added ÷ margin <span class="arr">↕</span></button></th></tr></thead>
+    <tbody id="close"></tbody>
+  </table></div>
+</section>
+
+<section aria-labelledby="e">
+  <h2 id="e">All 48 Lok Sabha seats and their assembly seats</h2>
+  <p class="small">"Avg margin" is the average winning margin of the six assembly seats, as a percentage of votes polled. Rows marked <span class="flag">●</span> are seats where voters added exceeded the winning margin.</p>
+  <div class="controls"><label for="q" class="small">Filter</label><input id="q" type="search" placeholder="Seat, constituency or party"></div>
+  <div class="tablewrap" id="explorer"></div>
+</section>
+
+<section aria-labelledby="g">
+  <h2 id="g">What this check cannot yet show</h2>
+  <ul class="tight">
+    <li><strong>A full assembly-by-assembly list above 10% or below −10%.</strong> This needs Lok Sabha 2024 electors for each assembly segment. The ECI publishes them in its statistical reports and the CEO in Form 20, but both sites blocked automated access from here. If you upload that file (Excel or PDF), all 288 seats can be computed, including any that fell.</li>
+    <li><strong>Exact additions per assembly seat.</strong> The margin comparison above uses estimates for 283 of 288 seats. With the official assembly-level Lok Sabha counts, the 78-seat list can be confirmed or corrected seat by seat.</li>
+    <li><strong>Who was added.</strong> Net figures cannot separate genuine new voters (first-time 18–19 year olds, migrants) from duplicates. That needs roll-level audit data.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="s">
+  <h2 id="s">Sources</h2>
+  <ol class="src">
+    <li>Lok Sabha 2024 electors by seat: ECI voter-turnout data, phases 1–5, as published on <a href="https://data.opencity.in/dataset/parliament-elections-2024-voter-turnout" target="_blank" rel="noopener">OpenCity (source: eci.gov.in)</a>.</li>
+    <li>Assembly electors by seat as of 30 Oct 2024: CEO Maharashtra, as published on <a href="https://data.opencity.in/dataset/maharashtra-assembly-elections-2024" target="_blank" rel="noopener">OpenCity (source: ceoelection.maharashtra.gov.in)</a>.</li>
+    <li>2024 Assembly winners: <a href="https://data.opencity.in/dataset/maharashtra-assembly-elections-2024-results" target="_blank" rel="noopener">Gazette list of winning candidates</a>, cross-checked against <a href="https://results.eci.gov.in/ResultAcGenNov2024/partywiseresult-S13.htm" target="_blank" rel="noopener">ECI party-wise results</a> (totals match: BJP 132, SHS 57, NCP 41, SS(UBT) 20, INC 16, NCP(SP) 10).</li>
+    <li>Winner and runner-up votes: <a href="https://results.eci.gov.in/ResultAcGenNov2024/partywiseresult-S13.htm" target="_blank" rel="noopener">ECI results pages</a> for 50 seats; the rest from Wikipedia constituency pages, which reproduce ECI results (the ECI site rate-limited further requests).</li>
+    <li>Assembly-level Lok Sabha figures and 2019 comparison: <a href="https://m.thewire.in/article/government/maharashtra-assembly-polls-2024-voter-surge/amp" target="_blank" rel="noopener">The Wire</a>, from ECI and CEO data and RTI replies.</li>
+    <li>ECI response to Congress, Dec 2024: <a href="https://www.etvbharat.com/en/!bharat/no-arbitrary-addition-deletion-in-voters-list-in-maharashtra-ec-to-congress-enn24122403432" target="_blank" rel="noopener">ETV Bharat</a>.</li>
+  </ol>
+  <p class="small">Mapping of assembly seats to Lok Sabha seats follows the 2008 Delimitation Order. Every seat 1–288 is assigned once.</p>
+</section>
+</div>
+</div>
+<script>
+(function(){
+  var btns=document.querySelectorAll('.filters button');
+  function apply(f){
+    btns.forEach(function(b){b.setAttribute('aria-pressed', b.dataset.f===f?'true':'false')});
+    document.querySelectorAll('.ev').forEach(function(li){li.hidden = !(f==='all'||li.classList.contains(f))});
+    document.querySelectorAll('ol.tl').forEach(function(ol){
+      var any=[].some.call(ol.children,function(c){return !c.hidden});
+      ol.hidden=!any; var ph=ol.previousElementSibling; if(ph&&ph.classList.contains('phase')) ph.hidden=!any;
+    });
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.f)})});
+})();
+</script>
+<script>
+const PCS=[{"pc":"Kalyan","ls":2082221,"vs":2295909,"d":213688,"p":10.26,"m":5,"v":1,"am":27.56,"acs":[[140,"Ambarnath (SC)",374664,"SHS",51375,27.84,34864,false],[141,"Ulhasnagar",283379,"BJP",30754,19.81,26369,false],[142,"Kalyan East",329173,"BJP",26408,13.65,29793,true],[143,"Dombivali",313122,"BJP",77106,43.68,38012,true],[144,"Kalyan Rural",510247,"SHS",66396,22.43,47480,false],[149,"Mumbra-Kalwa",485324,"NCP(SP)",96228,37.92,45161,false]]},{"pc":"Bhiwandi","ls":2087244,"vs":2247087,"d":159843,"p":7.66,"m":5,"v":0,"am":17.15,"acs":[[134,"Bhiwandi Rural (ST)",337711,"SHS",57962,24.0,24028,false],[135,"Shahapur (ST)",291057,"NCP",1672,0.81,20709,false],[136,"Bhiwandi West",334037,"BJP",31293,17.24,23767,false],[137,"Bhiwandi East",373645,"SP",52015,27.14,26585,false],[138,"Kalyan West",440597,"SHS",42454,17.29,40459,true],[139,"Murbad",470040,"BJP",52392,16.43,33443,false]]},{"pc":"Nagpur","ls":2223281,"vs":2383014,"d":159733,"p":7.18,"m":4,"v":2,"am":15.05,"acs":[[52,"Nagpur South West",411241,"BJP",39710,17.46,34833,true],[53,"Nagpur South",394425,"BJP",15658,6.86,26423,false],[54,"Nagpur East",418981,"BJP",115288,46.03,28068,false],[55,"Nagpur Central",341169,"BJP",11632,5.93,25320,true],[56,"Nagpur West",388353,"INC",5824,2.65,26016,false],[57,"Nagpur North (SC)",428845,"INC",28467,11.36,28728,false]]},{"pc":"Thane","ls":2507372,"vs":2686343,"d":178971,"p":7.14,"m":6,"v":0,"am":30.03,"acs":[[145,"Mira Bhayandar",510862,"BJP",60433,22.97,34045,false],[146,"Ovala-Majiwada",545110,"SHS",108158,37.88,36327,false],[147,"Kopri-Pachpakhadi",339526,"SHS",120717,59.42,22627,false],[148,"Thane",378207,"BJP",58253,25.09,25204,false],[150,"Airoli",489059,"BJP",91880,34.66,32592,false],[151,"Belapur",423579,"BJP",377,0.16,28228,false]]},{"pc":"Shirur","ls":2539702,"vs":2716781,"d":177079,"p":6.97,"m":4,"v":1,"am":11.01,"acs":[[195,"Junnar",325764,"IND",6664,2.95,21226,false],[196,"Ambegaon",314252,"NCP",1523,0.68,20476,false],[197,"Khed Alandi",376623,"SS(UBT)",51743,19.95,24540,false],[198,"Shirur",466042,"NCP",74550,23.22,30367,false],[207,"Bhosari",608425,"BJP",63765,16.99,39644,false],[213,"Hadapsar",625675,"NCP",7122,2.24,40768,false]]},{"pc":"Palghar","ls":2148514,"vs":2292066,"d":143552,"p":6.68,"m":5,"v":0,"am":10.95,"acs":[[128,"Dahanu (ST)",301239,"CPI(M)",5133,2.31,18863,false],[129,"Vikramgad (ST)",317741,"BJP",41408,16.64,19896,false],[130,"Palghar (ST)",298579,"SHS",40337,18.8,18696,false],[131,"Boisar (ST)",411329,"SHS",44455,15.98,25756,false],[132,"Nalasopara",608526,"BJP",36875,10.53,38104,false],[133,"Vasai",354652,"BJP",3153,1.44,22207,false]]},{"pc":"Maval","ls":2585018,"vs":2754306,"d":169288,"p":6.55,"m":6,"v":0,"am":16.96,"acs":[[188,"Panvel",652062,"BJP",51091,13.31,40085,false],[189,"Karjat",318742,"SHS",5694,2.37,19594,false],[190,"Uran",342101,"BJP",6512,2.47,21030,false],[204,"Maval",386172,"NCP",108565,38.9,23739,false],[205,"Chinchwad",663622,"BJP",103865,26.71,40795,false],[206,"Pimpri (SC)",391607,"NCP",36664,18.03,24073,false]]},{"pc":"Baramati","ls":2372668,"vs":2512204,"d":139536,"p":5.88,"m":6,"v":0,"am":13.54,"acs":[[199,"Daund",319311,"BJP",13889,5.87,17733,false],[200,"Indapur",341485,"NCP",19410,7.32,18964,false],[201,"Baramati",380608,"NCP",100899,36.84,21137,false],[202,"Purandar",464017,"SHS",24188,8.5,25769,false],[203,"Bhor",430278,"NCP",19638,6.71,23895,false],[211,"Khadakwasala",576505,"BJP",52322,16.02,32016,false]]},{"pc":"Solapur","ls":2030119,"vs":2146624,"d":116505,"p":5.74,"m":5,"v":1,"am":20.36,"acs":[[247,"Mohol (SC)",331458,"NCP(SP)",30202,12.97,17993,false],[248,"Solapur City North",328572,"BJP",54583,28.35,17836,false],[249,"Solapur City Central",346677,"BJP",48850,24.24,18819,false],[250,"Akkalkot",383479,"BJP",49572,19.29,20817,false],[251,"Solapur South",382754,"BJP",77127,34.13,20777,false],[252,"Pandharpur",373684,"BJP",8430,3.21,20285,false]]},{"pc":"Pune","ls":2061276,"vs":2179204,"d":117928,"p":5.72,"m":5,"v":1,"am":19.79,"acs":[[208,"Vadgaon Sheri",503539,"NCP(SP)",4710,1.66,27244,false],[209,"Shivajinagar",295117,"BJP",36702,23.94,15967,false],[210,"Kothrud",440557,"BJP",112041,48.13,23836,false],[212,"Parvati",360974,"BJP",54660,26.89,19531,false],[214,"Pune Cantonment (SC)",295382,"BJP",10320,6.57,15982,false],[215,"Kasba Peth",283635,"BJP",19423,11.52,15346,false]]},{"pc":"Dhule","ls":2022061,"vs":2137330,"d":115269,"p":5.7,"m":5,"v":0,"am":31.7,"acs":[[6,"Dhule Rural",409475,"BJP",66320,22.91,22081,false],[7,"Dhule City",364440,"BJP",45750,20.76,19653,false],[8,"Sindkheda",341008,"BJP",95884,42.39,18389,false],[114,"Malegaon Central",342713,"AIMIM",162,0.07,18481,false],[115,"Malegaon Outer",380576,"SHS",106606,41.17,20523,false],[116,"Baglan (ST)",299118,"BJP",129297,62.92,16130,false]]},{"pc":"Amravati","ls":1836078,"vs":1937493,"d":101415,"p":5.52,"m":4,"v":1,"am":16.86,"acs":[[37,"Badnera",363825,"RYSP",66974,31.52,19033,false],[38,"Amravati",374458,"NCP",5496,2.61,19589,false],[39,"Teosa",296495,"BJP",7617,3.75,15510,false],[40,"Daryapur (SC)",308445,"SS(UBT)",19709,9.45,16135,false],[41,"Melghat (ST)",302029,"BJP",106859,48.11,15800,false],[42,"Achalpur",292241,"BJP",12131,5.7,15288,false]]},{"pc":"Nashik","ls":2030124,"vs":2130291,"d":100167,"p":4.93,"m":6,"v":0,"am":24.82,"acs":[[120,"Sinnar",323464,"NCP",40884,16.8,15198,false],[123,"Nashik East",409239,"BJP",87817,36.13,19228,false],[124,"Nashik Central",345393,"BJP",17856,8.9,16228,false],[125,"Nashik West",483495,"BJP",68177,24.66,22716,false],[126,"Deolali (SC)",288141,"NCP",40679,22.15,13538,false],[127,"Igatpuri (ST)",280559,"NCP",86581,40.27,13182,false]]},{"pc":"Ramtek","ls":2049085,"vs":2142983,"d":93898,"p":4.58,"m":5,"v":1,"am":15.3,"acs":[[48,"Katol",281367,"BJP",38816,19.51,12322,false],[49,"Savner",321817,"BJP",26401,11.82,14094,false],[50,"Hingna",450141,"BJP",78931,29.07,19714,false],[51,"Umred (SC)",300957,"INC",12825,5.94,13180,false],[58,"Kamthi",501770,"BJP",40946,12.69,21975,false],[59,"Ramtek",286931,"SHS",26555,12.8,12566,false]]},{"pc":"Jalgaon","ls":1994046,"vs":2081547,"d":87501,"p":4.39,"m":6,"v":0,"am":26.45,"acs":[[13,"Jalgaon City",433467,"BJP",87503,36.27,18229,false],[14,"Jalgaon Rural",337386,"SHS",59232,25.15,14188,false],[15,"Amalner",308272,"NCP",33435,16.34,12964,false],[16,"Erandol",293551,"SHS",56332,27.66,12345,false],[17,"Chalisgaon",375011,"BJP",85653,36.57,15771,false],[18,"Pachora",333860,"SHS",38689,16.68,14040,false]]},{"pc":"Jalna","ls":1967574,"vs":2053125,"d":85551,"p":4.35,"m":6,"v":0,"am":10.99,"acs":[[101,"Jalna",344252,"SHS",31651,14.13,14351,false],[102,"Badnapur (SC)",333097,"BJP",45531,18.25,13886,false],[103,"Bhokardan",321735,"BJP",23179,9.23,13412,false],[104,"Sillod",357985,"SHS",2420,0.84,14923,false],[106,"Phulambri",370703,"BJP",32501,12.05,15453,false],[110,"Paithan",325353,"SHS",29192,11.46,13563,false]]},{"pc":"Aurangabad","ls":2059710,"vs":2148710,"d":89000,"p":4.32,"m":6,"v":0,"am":6.32,"acs":[[105,"Kannad",332738,"SHS",18201,7.83,13779,false],[107,"Aurangabad Central",368970,"SHS",8119,3.66,15279,false],[108,"Aurangabad West (SC)",407097,"SHS",16351,6.58,16858,false],[109,"Aurangabad East",354633,"BJP",2161,1.0,14686,false],[111,"Gangapur",364770,"BJP",5015,1.86,15106,false],[112,"Vaijapur",320502,"SHS",41658,17.01,13272,false]]},{"pc":"Sangli","ls":1868174,"vs":1948197,"d":80023,"p":4.28,"m":4,"v":2,"am":18.21,"acs":[[281,"Miraj (SC)",343876,"BJP",45195,19.75,14114,false],[282,"Sangli",356410,"BJP",36135,15.98,14628,false],[285,"Palus-Kadegaon",292866,"INC",30064,12.85,12020,false],[286,"Khanapur",350996,"SHS",78181,31.06,14406,false],[287,"Tasgaon-Kavathe Mahankal",312686,"NCP(SP)",27644,11.65,12834,false],[288,"Jat",291363,"BJP",38240,17.95,11959,false]]},{"pc":"Kolhapur","ls":1936403,"vs":2015362,"d":78959,"p":4.08,"m":5,"v":0,"am":8.26,"acs":[[271,"Chandgad",327680,"IND",24134,9.73,12845,false],[272,"Radhanagari",344422,"SHS",38259,14.01,13502,false],[273,"Kagal",343672,"NCP",11581,4.04,13472,false],[274,"Kolhapur South",372684,"BJP",17630,6.2,14609,false],[275,"Karvir",325161,"SHS",1976,0.71,12747,false],[276,"Kolhapur North",301743,"SHS",29563,14.85,11829,false]]},{"pc":"Beed","ls":2142547,"vs":2227844,"d":85297,"p":3.98,"m":5,"v":1,"am":17.14,"acs":[[228,"Georai",379909,"NCP",42390,15.23,14542,false],[229,"Majalgaon",352279,"NCP",5899,2.47,13484,false],[230,"Beed",384101,"NCP(SP)",5324,2.19,14702,false],[231,"Ashti",386358,"BJP",77975,27.19,14788,false],[232,"Kaij (SC)",387221,"BJP",2687,1.08,14822,false],[233,"Parli",337976,"NCP",140224,54.66,12937,false]]},{"pc":"Parbhani","ls":2123056,"vs":2206796,"d":83740,"p":3.94,"m":4,"v":1,"am":5.38,"acs":[[95,"Jintur",388294,"BJP",4516,1.53,14719,false],[96,"Parbhani",350559,"SS(UBT)",34216,14.64,13288,false],[97,"Gangakhed",421272,"RSPS",26292,8.45,15969,false],[98,"Pathri",393244,"NCP",13244,4.69,14906,false],[99,"Partur",323136,"BJP",4740,2.07,12249,false],[100,"Ghansawangi",330291,"SHS",2309,0.9,12520,false]]},{"pc":"Akola","ls":1890814,"vs":1962286,"d":71472,"p":3.78,"m":3,"v":3,"am":9.56,"acs":[[28,"Akot",311182,"BJP",18851,8.79,11334,false],[29,"Balapur",310202,"SS(UBT)",11739,5.3,11299,false],[30,"Akola West",350795,"INC",1283,0.62,12777,false],[31,"Akola East",355184,"BJP",50613,22.81,12937,false],[32,"Murtizapur (SC)",310531,"BJP",35864,17.18,11311,false],[33,"Risod",324392,"INC",6136,2.66,11815,false]]},{"pc":"Madha","ls":1991454,"vs":2065070,"d":73616,"p":3.7,"m":2,"v":3,"am":9.87,"acs":[[244,"Karmala",328994,"NCP(SP)",16085,6.95,11738,false],[245,"Madha",352691,"NCP(SP)",30621,11.38,12584,false],[253,"Sangole",333493,"PWPI",25386,9.63,11899,false],[254,"Malshiras (SC)",349568,"NCP(SP)",13147,5.41,12473,false],[255,"Phaltan (SC)",339662,"NCP",17046,6.97,12119,false],[258,"Man",360662,"BJP",49675,18.87,12868,false]]},{"pc":"Yavatmal-Washim","ls":1940916,"vs":2011704,"d":70788,"p":3.65,"m":5,"v":1,"am":14.02,"acs":[[34,"Washim (SC)",368474,"BJP",19874,8.1,12976,false],[35,"Karanja",316241,"BJP",35073,16.77,11136,false],[77,"Ralegaon (ST)",288015,"BJP",2812,1.31,10142,false],[78,"Yavatmal",371279,"INC",11381,4.76,13074,false],[79,"Digras",345869,"SHS",28775,10.91,12180,false],[81,"Pusad",321826,"NCP",90769,42.26,11333,false]]},{"pc":"Mumbai North West","ls":1735088,"vs":1797715,"d":62627,"p":3.61,"m":3,"v":3,"am":7.66,"acs":[[158,"Jogeshwari East",299015,"SS(UBT)",1541,0.87,10418,false],[159,"Dindoshi",306502,"SS(UBT)",6182,3.48,10679,false],[163,"Goregaon",329212,"BJP",23600,12.83,11470,false],[164,"Versova",286711,"SS(UBT)",1600,1.08,9990,false],[165,"Andheri West",288125,"BJP",19599,12.63,10039,false],[166,"Andheri East",288150,"SHS",25486,15.09,10040,false]]},{"pc":"Buldhana","ls":1782700,"vs":1846115,"d":63415,"p":3.56,"m":5,"v":1,"am":4.25,"acs":[[22,"Buldhana",307106,"SHS",841,0.43,10557,false],[23,"Chikhli",305718,"BJP",3201,1.43,10509,false],[24,"Sindkhed Raja",322995,"NCP",4650,2.02,11103,false],[25,"Mehkar (SC)",305960,"SS(UBT)",4819,2.25,10518,false],[26,"Khamgaon",297922,"BJP",25477,11.15,10241,false],[27,"Jalgaon (Jamod)",306414,"BJP",18771,8.25,10533,false]]},{"pc":"Ahmednagar","ls":1981866,"vs":2052474,"d":70608,"p":3.56,"m":5,"v":1,"am":9.42,"acs":[[222,"Shevgaon",374442,"BJP",19043,7.24,12872,false],[223,"Rahuri",324059,"BJP",34487,14.15,11140,false],[224,"Parner",350350,"NCP",1526,0.61,12044,false],[225,"Ahmednagar City",316794,"NCP",39618,19.41,10890,false],[226,"Shrigonda",339526,"BJP",37156,14.67,11672,false],[227,"Karjat Jamkhed",347303,"NCP(SP)",1243,0.47,11939,false]]},{"pc":"Hatkanangle","ls":1814277,"vs":1877604,"d":63327,"p":3.49,"m":2,"v":1,"am":14.91,"acs":[[277,"Shahuwadi",306246,"JSS",36053,14.75,10328,false],[278,"Hatkanangle (SC)",341685,"JSS",46249,17.6,11523,false],[279,"Ichalkaranji",312664,"BJP",56811,25.95,10544,false],[280,"Shirol",329141,"RSVA",40816,15.75,11100,false],[283,"Islampur",280856,"NCP(SP)",13027,6.13,9471,false],[284,"Shirala",307012,"BJP",22689,9.3,10353,false]]},{"pc":"Wardha","ls":1682771,"vs":1741291,"d":58520,"p":3.48,"m":6,"v":0,"am":13.59,"acs":[[36,"Dhamangaon Railway",317856,"BJP",16228,7.27,10689,false],[43,"Morshi",291109,"BJP",64988,30.93,9790,false],[44,"Arvi",265420,"BJP",39574,20.54,8926,false],[45,"Deoli",274608,"BJP",9308,4.88,9235,false],[46,"Hinganghat",297547,"BJP",30094,14.11,10006,false],[47,"Wardha",294751,"BJP",7470,3.79,9912,false]]},{"pc":"Raver","ls":1821750,"vs":1884950,"d":63200,"p":3.47,"m":6,"v":0,"am":15.7,"acs":[[10,"Chopda (ST)",331384,"SHS",32313,14.52,11113,false],[11,"Raver",309536,"BJP",43562,18.89,10381,false],[12,"Bhusawal (SC)",316307,"BJP",47488,25.77,10608,false],[19,"Jamner",335274,"BJP",26885,11.25,11244,false],[20,"Muktainagar",304064,"SHS",23904,11.04,10197,false],[21,"Malkapur",288385,"BJP",26397,12.72,9671,false]]},{"pc":"Chandrapur","ls":1837906,"vs":1901657,"d":63751,"p":3.47,"m":5,"v":1,"am":8.47,"acs":[[70,"Rajura",325278,"BJP",3054,1.28,10909,false],[71,"Chandrapur (SC)",373927,"BJP",22804,10.39,12540,false],[72,"Ballarpur",312355,"BJP",25985,11.83,10475,false],[75,"Warora",282049,"BJP",15450,7.79,9459,false],[76,"Wani",286025,"SS(UBT)",15560,7.06,9592,false],[80,"Arni (ST)",322023,"BJP",29313,12.45,10799,false]]},{"pc":"Nandurbar","ls":1970327,"vs":2038045,"d":67718,"p":3.44,"m":5,"v":1,"am":20.05,"acs":[[1,"Akkalkuwa (ST)",319439,"SHS",2904,1.26,10623,false],[2,"Shahada (ST)",352636,"BJP",53204,21.69,11727,false],[3,"Nandurbar (ST)",353781,"BJP",76247,31.75,11765,false],[4,"Navapur (ST)",295786,"INC",1121,0.46,9837,false],[5,"Sakri (ST)",365407,"SHS",5584,2.31,12152,false],[9,"Shirpur (ST)",350996,"BJP",145944,62.86,11673,false]]},{"pc":"Hingoli","ls":1817734,"vs":1879649,"d":61915,"p":3.41,"m":6,"v":0,"am":8.98,"acs":[[82,"Umarkhed (SC)",317134,"BJP",16629,7.56,10458,false],[83,"Kinwat",278665,"BJP",5636,2.79,9189,false],[84,"Hadgaon",299086,"SHS",30067,13.9,9863,false],[92,"Basmath",320765,"NCP",29588,12.21,10577,false],[93,"Kalamnuri",330686,"SHS",31083,12.65,10905,false],[94,"Hingoli",333313,"BJP",10926,4.75,10991,false]]},{"pc":"Mumbai North","ls":1811942,"vs":1870509,"d":58567,"p":3.23,"m":5,"v":1,"am":35.71,"acs":[[152,"Borivali",325734,"BJP",100257,49.12,10192,false],[153,"Dahisar",277915,"BJP",44329,27.27,8696,false],[154,"Magathane",304627,"SHS",58164,32.05,9532,false],[160,"Kandivali East",286898,"BJP",83593,52.99,8977,false],[161,"Charkop",317416,"BJP",91154,49.7,9932,false],[162,"Malad West",357919,"INC",6227,3.16,11199,false]]},{"pc":"Mumbai North East","ls":1636890,"vs":1689715,"d":52825,"p":3.23,"m":4,"v":1,"am":17.05,"acs":[[155,"Mulund",296687,"BJP",90032,49.13,9283,false],[156,"Vikhroli",243535,"SS(UBT)",15526,11.01,7620,false],[157,"Bhandup West",288286,"SHS",6764,3.72,9020,false],[169,"Ghatkopar West",277532,"BJP",12971,7.75,8684,false],[170,"Ghatkopar East",249539,"BJP",34999,23.41,7808,false],[171,"Mankhurd Shivaji Nagar",334136,"SP",12753,7.31,10455,false]]},{"pc":"Shirdi","ls":1677335,"vs":1731513,"d":54178,"p":3.23,"m":5,"v":1,"am":17.81,"acs":[[216,"Akole (ST)",267510,"NCP",5556,2.84,8370,false],[217,"Sangamner",289174,"SHS",10560,4.79,9048,false],[218,"Shirdi",292911,"BJP",70282,31.45,9165,false],[219,"Kopargaon",289656,"NCP",124624,59.9,9063,false],[220,"Shrirampur (SC)",309151,"INC",13373,6.11,9673,false],[221,"Nevasa",283111,"SHS",4021,1.77,8858,false]]},{"pc":"Mumbai North Central","ls":1744128,"vs":1800143,"d":56015,"p":3.21,"m":4,"v":2,"am":11.95,"acs":[[167,"Vile Parle",275325,"BJP",54935,34.85,8563,false],[168,"Chandivali",453003,"SHS",20625,8.59,14089,false],[174,"Kurla (SC)",292228,"SHS",4187,2.68,9089,false],[175,"Kalina",241737,"SS(UBT)",5008,3.92,7518,false],[176,"Vandre East",249104,"SS(UBT)",11365,8.32,7748,false],[177,"Vandre West",288746,"BJP",19931,13.36,8980,false]]},{"pc":"Latur","ls":1977042,"vs":2040090,"d":63048,"p":3.19,"m":5,"v":1,"am":12.02,"acs":[[88,"Loha",301650,"NCP",10973,4.77,9325,false],[234,"Latur Rural",334605,"BJP",6595,2.8,10344,false],[235,"Latur City",400034,"INC",7398,2.92,12367,false],[236,"Ahmadpur",348743,"NCP",31669,13.1,10781,false],[237,"Udgir (SC)",323261,"NCP",93214,42.29,9993,false],[238,"Nilanga",331797,"BJP",13740,6.22,10257,false]]},{"pc":"Nanded","ls":1851843,"vs":1908546,"d":56703,"p":3.06,"m":6,"v":0,"am":13.92,"acs":[[85,"Bhokar",303103,"BJP",50551,21.66,9000,false],[86,"Nanded North",358918,"SHS",3502,1.59,10657,false],[87,"Nanded South",316821,"SHS",2132,1.04,9407,false],[89,"Naigaon",310375,"BJP",47629,20.51,9215,false],[90,"Deglur (SC)",312237,"BJP",42999,21.46,9271,false],[91,"Mukhed",307092,"BJP",37784,17.29,9118,false]]},{"pc":"Dindori","ls":1853387,"vs":1908487,"d":55100,"p":2.97,"m":6,"v":0,"am":16.96,"acs":[[113,"Nandgaon",343056,"SHS",89874,36.77,9895,false],[117,"Kalwan (ST)",301996,"NCP",8432,3.53,8711,false],[118,"Chandwad",308808,"BJP",48961,20.45,8907,false],[119,"Yevla",326623,"NCP",26400,10.53,9421,false],[121,"Niphad",298868,"NCP",29239,13.27,8620,false],[122,"Dindori (ST)",329136,"NCP",44403,17.18,9493,false]]},{"pc":"Satara","ls":1889740,"vs":1942470,"d":52730,"p":2.79,"m":6,"v":0,"am":26.41,"acs":[[256,"Wai",347090,"NCP",61392,25.92,9421,false],[257,"Koregaon",321122,"SHS",45063,17.86,8716,false],[259,"Karad North",306203,"BJP",43691,18.89,8311,false],[260,"Karad South",315420,"BJP",39355,16.19,8561,false],[261,"Patan",309963,"SHS",34824,15.04,8413,false],[262,"Satara",342672,"BJP",142124,64.58,9301,false]]},{"pc":"Osmanabad","ls":1992737,"vs":2045818,"d":53081,"p":2.66,"m":3,"v":3,"am":8.39,"acs":[[239,"Ausa",304307,"BJP",33462,15.84,7885,false],[240,"Umarga (SC)",315394,"SS(UBT)",3965,2.0,8172,false],[241,"Tuljapur",383077,"BJP",36879,14.21,9926,false],[242,"Osmanabad",374768,"SS(UBT)",36566,15.05,9711,false],[243,"Paranda",330773,"SHS",1509,0.65,8571,false],[246,"Barshi",337499,"SS(UBT)",6472,2.59,8745,false]]},{"pc":"Raigad","ls":1668372,"vs":1709884,"d":41512,"p":2.49,"m":5,"v":1,"am":19.36,"acs":[[191,"Pen",307979,"BJP",60810,26.84,7482,false],[192,"Alibag",306230,"SHS",29565,12.42,7440,false],[193,"Shrivardhan",265286,"NCP",82798,50.51,6445,false],[194,"Mahad",296388,"SHS",26210,12.29,7201,false],[263,"Dapoli",291297,"SHS",24093,12.23,7077,false],[264,"Guhagar",242704,"SS(UBT)",2830,1.87,5897,false]]},{"pc":"Bhandara-Gondiya","ls":1827188,"vs":1872471,"d":45283,"p":2.48,"m":5,"v":1,"am":16.96,"acs":[[60,"Tumsar",309727,"NCP",64305,27.75,7495,false],[61,"Bhandara (SC)",378667,"SHS",38367,14.65,9164,false],[62,"Sakoli",328476,"INC",208,0.09,7949,false],[63,"Arjuni Morgaon (SC)",258966,"NCP",16415,8.96,6267,false],[64,"Tirora",271079,"BJP",42686,23.95,6560,false],[65,"Gondiya",325556,"BJP",61608,26.37,7878,false]]},{"pc":"Ratnagiri-Sindhudurg","ls":1451630,"vs":1484624,"d":32994,"p":2.27,"m":6,"v":0,"am":17.2,"acs":[[265,"Chiplun",276066,"NCP",6867,3.57,6128,false],[266,"Ratnagiri",291221,"SHS",41590,22.17,6464,false],[267,"Rajapur",238409,"SHS",19677,12.73,5292,false],[268,"Kankavli",231740,"BJP",58007,35.56,5144,false],[269,"Kudal",217186,"SHS",8176,5.15,4821,false],[270,"Sawantwadi",230002,"SHS",39899,24.02,5105,false]]},{"pc":"Mumbai South Central","ls":1474405,"vs":1504494,"d":30089,"p":2.04,"m":4,"v":2,"am":9.12,"acs":[[172,"Anushakti Nagar",269069,"NCP",3378,2.31,5379,false],[173,"Chembur",258947,"SHS",10711,7.49,5177,false],[178,"Dharavi (SC)",261869,"INC",23459,17.87,5235,false],[179,"Sion Koliwada",283271,"BJP",7895,5.19,5663,false],[180,"Wadala",205387,"BJP",24973,20.85,4106,false],[181,"Mahim",225951,"SS(UBT)",1316,0.98,4517,false]]},{"pc":"Mumbai South","ls":1536168,"vs":1567132,"d":30964,"p":2.02,"m":2,"v":4,"am":25.55,"acs":[[182,"Worli",264520,"SS(UBT)",8801,6.14,5238,false],[183,"Shivadi",275384,"SS(UBT)",7140,4.65,5453,false],[184,"Byculla",258856,"SS(UBT)",31361,22.73,5125,false],[185,"Malabar Hill",261162,"BJP",68019,49.32,5171,false],[186,"Mumbadevi",241959,"INC",34844,29.43,4791,false],[187,"Colaba",265251,"BJP",48581,41.04,5252,false]]},{"pc":"Gadchiroli-Chimur","ls":1617207,"vs":1647447,"d":30240,"p":1.87,"m":4,"v":2,"am":7.64,"acs":[[66,"Amgaon (ST)",269499,"BJP",32721,16.59,4947,false],[67,"Armori (ST)",262771,"INC",6210,3.05,4824,false],[68,"Gadchiroli (ST)",307223,"BJP",15505,6.67,5640,false],[69,"Aheri (ST)",251461,"NCP",16814,9.05,4616,false],[73,"Brahmapuri",275666,"INC",13971,6.23,5060,false],[74,"Chimur",280827,"BJP",9853,4.25,5155,false]]}];
+(function(){
+  var fmt=function(n){return n.toLocaleString('en-IN')};
+  var BLOC={BJP:'m',SHS:'m',NCP:'m','INC':'v','SS(UBT)':'v','NCP(SP)':'v'};
+  var sorted=PCS.slice().sort(function(a,b){return b.p-a.p});
+  // chart
+  var W=860,rowH=19,top=24,left=170,right=60,H=top+sorted.length*rowH+10,max=12;
+  var x=function(v){return left+(W-left-right)*v/max};
+  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Percent change in electors for 48 Lok Sabha seats">';
+  for(var t=0;t<=12;t+=2){s+='<line class="grid" x1="'+x(t)+'" x2="'+x(t)+'" y1="'+(top-6)+'" y2="'+(H-6)+'"/><text x="'+x(t)+'" y="'+(top-10)+'" text-anchor="middle">'+t+'%</text>'}
+  sorted.forEach(function(r,i){
+    var y=top+i*rowH, w=x(r.p)-left, hi=r.p>=10;
+    s+='<g class="row" tabindex="0" data-i="'+i+'"><rect x="0" y="'+y+'" width="'+W+'" height="'+rowH+'" fill="transparent"/>'+
+      '<text class="lbl" x="'+(left-8)+'" y="'+(y+13)+'" text-anchor="end">'+r.pc+'</text>'+
+      '<rect class="bar'+(hi?' hi':'')+'" x="'+left+'" y="'+(y+3)+'" width="'+Math.max(w,1)+'" height="'+(rowH-6)+'" rx="2"/>'+
+      '<text x="'+(left+w+6)+'" y="'+(y+13)+'">+'+r.p.toFixed(2)+'%</text></g>';
+  });
+  [[4.39,'State avg 4.39%'],[10,'10%']].forEach(function(l){s+='<line class="refl" x1="'+x(l[0])+'" x2="'+x(l[0])+'" y1="'+(top-6)+'" y2="'+(H-6)+'"/>'});
+  s+='</svg>';
+  var ch=document.getElementById('chart'); ch.innerHTML=s;
+  var tip=document.createElement('div'); tip.className='tip'; tip.hidden=true; ch.appendChild(tip);
+  function show(e,g){var r=sorted[+g.dataset.i];tip.innerHTML='<b>'+r.pc+'</b><br>LS '+fmt(r.ls)+' → VS '+fmt(r.vs)+'<br>+'+fmt(r.d)+' (+'+r.p.toFixed(2)+'%) · Mahayuti '+r.m+'/6';tip.hidden=false;
+    var b=ch.getBoundingClientRect(),gb=g.getBoundingClientRect();tip.style.left=Math.min(Math.max(8,(e&&e.clientX?e.clientX:gb.left+200)-b.left+ch.scrollLeft+12),ch.scrollWidth-230)+'px';tip.style.top=(gb.top-b.top-44)+'px'}
+  ch.querySelectorAll('.row').forEach(function(g){g.addEventListener('mousemove',function(e){show(e,g)});g.addEventListener('focus',function(){show(null,g)});
+    g.addEventListener('mouseleave',function(){tip.hidden=true});g.addEventListener('blur',function(){tip.hidden=true})});
+  // bins
+  var bins=[[0,3,'Under 3%'],[3,4,'3–4%'],[4,5,'4–5%'],[5,7,'5–7%'],[7,99,'7% and above']],h='';
+  bins.forEach(function(b){var g=PCS.filter(function(r){return r.p>=b[0]&&r.p<b[1]});var m=0,v=0;g.forEach(function(r){m+=r.m;v+=r.v});var n=g.length*6;
+    h+='<tr><td>'+b[2]+'</td><td class="r">'+g.length+'</td><td class="r">'+n+'</td><td class="r">'+m+'</td><td class="r">'+v+'</td><td class="r">'+Math.round(m/n*100)+'%</td></tr>'});
+  h+='<tr><td><strong>All seats</strong></td><td class="r">48</td><td class="r">288</td><td class="r">230</td><td class="r">46</td><td class="r">80%</td></tr>';
+  document.getElementById('bins').innerHTML=h;
+  // explorer
+  var ex=document.getElementById('explorer');
+  ex.innerHTML=sorted.map(function(r){
+    var rows=r.acs.map(function(a){var c=BLOC[a[3]]||'o',close=a[4]<a[6];return '<tr><td>'+(close?'<span class="flag" title="Voters added exceed margin">● </span>':'')+a[0]+' '+a[1]+'</td><td class="r">'+fmt(a[2])+'</td><td><span class="pill '+c+'">'+a[3]+'</span></td><td class="r">'+fmt(a[4])+'</td><td class="r">'+a[5].toFixed(2)+'%</td><td class="r">'+fmt(a[6])+(a[7]?' ✓':'')+'</td></tr>'}).join('');
+    var key=(r.pc+' '+r.acs.map(function(a){return a[1]+' '+a[3]}).join(' ')).toLowerCase();
+    var nc=r.acs.filter(function(a){return a[4]<a[6]}).length;
+    return '<details data-k="'+key.replace(/"/g,'')+'"><summary><span class="n">'+r.pc+'</span><span class="p'+(r.p>=10?' flag':'')+'">+'+r.p.toFixed(2)+'%</span><span class="w">Avg margin '+r.am.toFixed(1)+'% · Mahayuti '+r.m+'/6, MVA '+r.v+'/6'+(nc?' · <span class="flag">'+nc+' ●</span>':'')+'</span></summary>'+
+      '<div><table><thead><tr><th>Assembly seat</th><th class="r">Electors, 30 Oct 2024</th><th>2024 winner</th><th class="r">Margin</th><th class="r">Margin %</th><th class="r">Voters added (est.)</th></tr></thead><tbody>'+rows+'</tbody></table></div></details>'}).join('');
+  document.getElementById('q').addEventListener('input',function(e){var q=e.target.value.trim().toLowerCase();
+    ex.querySelectorAll('details').forEach(function(d){d.hidden=q&&d.dataset.k.indexOf(q)<0})});
+  // close seats
+  var cl=[];PCS.forEach(function(r){r.acs.forEach(function(a){if(a[4]<a[6])cl.push({a:a,pc:r.pc})})});
+  var cb=document.getElementById('close'),q2=document.getElementById('q2');
+  var KEYS={ac:function(o){return o.a[0]},name:function(o){return o.a[1]},pc:function(o){return o.pc},party:function(o){return o.a[3]},
+    m:function(o){return o.a[4]},mp:function(o){return o.a[5]},add:function(o){return o.a[6]},ratio:function(o){return o.a[6]/o.a[4]}};
+  var sortKey='ratio',sortDir=-1;
+  function renderClose(){
+    var f=KEYS[sortKey];
+    cl.sort(function(x,y){var a=f(x),b=f(y);return (typeof a==='string'?a.localeCompare(b):a-b)*sortDir});
+    cb.innerHTML=cl.map(function(o){var a=o.a,c=BLOC[a[3]]||'o';var k=(a[1]+' '+o.pc+' '+a[3]).toLowerCase().replace(/"/g,'');
+      return '<tr data-k="'+k+'"><td>'+a[0]+' '+a[1]+'</td><td>'+o.pc+'</td><td><span class="pill '+c+'">'+a[3]+'</span></td><td class="r">'+fmt(a[4])+'</td><td class="r">'+a[5].toFixed(2)+'%</td><td class="r">'+fmt(a[6])+(a[7]?' ✓':'')+'</td><td class="r">'+(a[6]/a[4]).toFixed(1)+'×</td></tr>'}).join('');
+    filterClose();
+    document.querySelectorAll('#closehead th').forEach(function(th){var on=th.dataset.s===sortKey;
+      th.setAttribute('aria-sort',on?(sortDir>0?'ascending':'descending'):'none');
+      th.querySelector('.arr').textContent=on?(sortDir>0?'▲':'▼'):'↕'});
+  }
+  function filterClose(){var q=q2.value.trim().toLowerCase();cb.querySelectorAll('tr').forEach(function(t){t.hidden=!!q&&t.dataset.k.indexOf(q)<0})}
+  document.querySelectorAll('#closehead button').forEach(function(b){b.addEventListener('click',function(){
+    var s=b.parentNode.dataset.s;if(s===sortKey)sortDir=-sortDir;else{sortKey=s;sortDir=(s==='name'||s==='pc'||s==='party'||s==='ac')?1:-1}renderClose()})});
+  q2.addEventListener('input',filterClose);
+  renderClose();
+  // Excel download
+  var XL='Maharashtra_voter_roll_check_2024.xlsx',dl=document.getElementById('dlx'),dlMsg=document.getElementById('dlmsg');
+  dl.addEventListener('click',function(e){
+    if(!(window.claude&&window.claude.use))return; // plain link on ordinary websites
+    e.preventDefault();dlMsg.textContent='Preparing…';
+    window.claude.use('downloads').then(function(d){
+      if(!d){dlMsg.textContent='Downloads are not available in this view.';return}
+      return fetch(XL+'.b64.txt').then(function(r){if(!r.ok)throw new Error('fetch');return r.text()})
+        .then(function(t){var s=atob(t.trim()),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);
+          return d.save({filename:XL,data:new Blob([u])})})
+        .then(function(){dlMsg.textContent='Saved.'})
+        .catch(function(err){var c=err&&err.code;dlMsg.textContent=c==='declined'?'':(c==='rate_limited'?'A save prompt is already open.':'The file could not be saved here.')});
+    });
+  });
+})();
+</script>
+<script>
+(function(){var tabs=document.querySelectorAll('.tabbar button');
+function sel(id,push){tabs.forEach(function(t){var on=t.dataset.t===id;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;document.getElementById(t.dataset.t).hidden=!on});
+ if(push){try{history.replaceState(null,'','#'+id)}catch(e){}} }
+tabs.forEach(function(t,i){t.addEventListener('click',function(){sel(t.dataset.t,true);window.scrollTo(0,0)});
+ t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];n.focus();n.click()}})});
+sel(location.hash==='#rolls'?'rolls':'timeline',false);})();
+</script>
+
+</body>
+</html>
