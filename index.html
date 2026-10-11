@@ -388,9 +388,11 @@ html,body{background:#f6f5f9}
 <section aria-labelledby="b">
   <h2 id="b">Do higher-growth areas show bigger Mahayuti wins?</h2>
   <div class="tablewrap"><table>
-    <thead><tr><th>Elector growth (Lok Sabha seat)</th><th class="r">Lok Sabha seats</th><th class="r">Assembly seats</th><th class="r">Mahayuti won</th><th class="r">MVA won</th><th class="r">Mahayuti share</th></tr></thead>
+    <thead><tr><th>Elector growth (Lok Sabha seat)</th><th class="r">Lok Sabha seats</th><th class="r">Assembly seats</th><th class="r">Mahayuti won</th><th class="r">MVA won</th><th class="r">Mahayuti share</th><th class="r">Avg winning lead</th><th class="r">Avg Mahayuti lead</th><th class="r">Avg MVA lead</th></tr></thead>
     <tbody id="bins"></tbody>
   </table></div>
+  <p class="small">Lead = winner's votes minus runner-up's votes, as a % of votes polled, averaged over the assembly seats each side won in that band.</p>
+  <p>Mahayuti's average lead is largest in the highest-growth band (23.0%, against 15.6–18.8% where growth was under 4%). MVA's leads also rise with growth, from 4.8–8.7% to 17.3%, though MVA won only 3 seats in that band. Because leads widened for both alliances, this pattern alone does not show that the added voters caused the wider leads.</p>
   <p class="small">Mahayuti = BJP, Shiv Sena, NCP. MVA = INC, Shiv Sena (UBT), NCP (SP). The 12 other winners (small allies, independents, SP, AIMIM, CPI(M), PWPI) are counted in neither column.</p>
 </section>
 
@@ -509,9 +511,13 @@ const PCS=[{"pc":"Kalyan","ls":2082221,"vs":2295909,"d":213688,"p":10.26,"m":5,"
     g.addEventListener('mouseleave',function(){tip.hidden=true});g.addEventListener('blur',function(){tip.hidden=true})});
   // bins
   var bins=[[0,3,'Under 3%'],[3,4,'3–4%'],[4,5,'4–5%'],[5,7,'5–7%'],[7,99,'7% and above']],h='';
-  bins.forEach(function(b){var g=PCS.filter(function(r){return r.p>=b[0]&&r.p<b[1]});var m=0,v=0;g.forEach(function(r){m+=r.m;v+=r.v});var n=g.length*6;
-    h+='<tr><td>'+b[2]+'</td><td class="r">'+g.length+'</td><td class="r">'+n+'</td><td class="r">'+m+'</td><td class="r">'+v+'</td><td class="r">'+Math.round(m/n*100)+'%</td></tr>'});
-  h+='<tr><td><strong>All seats</strong></td><td class="r">48</td><td class="r">288</td><td class="r">230</td><td class="r">46</td><td class="r">80%</td></tr>';
+  function avgLead(g,test){var s=0,c=0;g.forEach(function(r){r.acs.forEach(function(a){if(test(a[3])){s+=a[5];c++}})});return c?(s/c).toFixed(1)+'%':'–'}
+  var isM=function(p){return BLOC[p]==='m'},isV=function(p){return BLOC[p]==='v'},any=function(){return true};
+  function binRow(label,g,bold){var m=0,v=0;g.forEach(function(r){m+=r.m;v+=r.v});var n=g.length*6;
+    var L=bold?function(x){return '<strong>'+x+'</strong>'}:function(x){return x};
+    return '<tr><td>'+L(label)+'</td><td class="r">'+g.length+'</td><td class="r">'+n+'</td><td class="r">'+m+'</td><td class="r">'+v+'</td><td class="r">'+Math.round(m/n*100)+'%</td><td class="r">'+avgLead(g,any)+'</td><td class="r">'+avgLead(g,isM)+'</td><td class="r">'+avgLead(g,isV)+'</td></tr>'}
+  bins.forEach(function(b){h+=binRow(b[2],PCS.filter(function(r){return r.p>=b[0]&&r.p<b[1]}),false)});
+  h+=binRow('All seats',PCS,true);
   document.getElementById('bins').innerHTML=h;
   // explorer
   var ex=document.getElementById('explorer');
